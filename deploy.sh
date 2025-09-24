@@ -29,23 +29,23 @@ echo "Deploying to S3 bucket: $S3_BUCKET"
 aws s3 sync dist/ s3://$S3_BUCKET --delete
 
 # Set proper content types for assets
-aws s3 cp s3://$S3_BUCKET --recursive \
+aws s3 cp s3://$S3_BUCKET/ s3://$S3_BUCKET/ --recursive \
     --exclude "*" \
     --include "*.html" \
     --content-type "text/html" \
     --metadata-directive REPLACE
 
-aws s3 cp s3://$S3_BUCKET --recursive \
+aws s3 cp s3://$S3_BUCKET/ s3://$S3_BUCKET/ --recursive \
     --exclude "*" \
     --include "*.js" \
     --content-type "application/javascript" \
     --metadata-directive REPLACE
 
-aws s3 cp s3://$S3_BUCKET --recursive \
+aws s3 cp s3://$S3_BUCKET/ s3://$S3_BUCKET/ --recursive \
     --exclude "*" \
     --include "*.css" \
     --content-type "text/css" \
     --metadata-directive REPLACE
 
 echo "Deployment complete!"
-echo "Your app should be available at: http://$S3_BUCKET.s3-website-us-east-1.amazonaws.com"
+echo "Your app should be available at: http://$S3_BUCKET.s3-website-us-west-2.amazonaws.com"
