@@ -121,6 +121,7 @@ function App() {
   const resetCharacter = () => {
     setSelectedAge(null)
     setCharacter(null)
+    setKnightName('')
   }
 
   return (
@@ -166,7 +167,7 @@ function App() {
           </div>
 
           <div className="character-info">
-            {knightName && <h2 className="knight-name-header">{knightName}</h2>}
+            <h2 className="knight-name-header">{knightName || 'Unnamed Knight'}</h2>
             <h2 className="character-age">Your {character.age} Knight</h2>
 
             <div className="stats">
