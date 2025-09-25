@@ -6,6 +6,7 @@ import { seers } from './data/seers'
 function App() {
   const [selectedAge, setSelectedAge] = useState(null)
   const [character, setCharacter] = useState(null)
+  const [knightName, setKnightName] = useState('')
 
   const ageOptions = [
     {
@@ -80,9 +81,29 @@ function App() {
     // Random seer
     const seer = seers[Math.floor(Math.random() * seers.length)]
 
+    // Calculate armor from properties (A1, A2, etc.)
+    const calculateArmor = (properties) => {
+      let totalArmor = 0
+      const armorRegex = /A(\d+)/g
+
+      properties.forEach(property => {
+        let match
+        while ((match = armorRegex.exec(property)) !== null) {
+          totalArmor += parseInt(match[1])
+        }
+      })
+
+      return totalArmor
+    }
+
+    const armor = calculateArmor(knighthood.properties)
+
     return {
       age: ageOption.name,
-      stats,
+      stats: {
+        ...stats,
+        armor
+      },
       knighthood: {
         ...knighthood,
         feature: featuresWithProperties
@@ -131,40 +152,78 @@ function App() {
       ) : (
         <div className="character-display">
           <button onClick={resetCharacter} className="reset-btn">Generate New Character</button>
+          <button onClick={() => window.print()} className="print-btn">Print Character Sheet</button>
+
+          <div className="knight-name-input">
+            <label htmlFor="knightName">Knight's Name:</label>
+            <input
+              type="text"
+              id="knightName"
+              value={knightName}
+              onChange={(e) => setKnightName(e.target.value)}
+              placeholder="Enter your knight's name"
+            />
+          </div>
 
           <div className="character-info">
-            <h2>Your {character.age} Knight</h2>
+            {knightName && <h2 className="knight-name-header">{knightName}</h2>}
+            <h2 className="character-age">Your {character.age} Knight</h2>
 
             <div className="stats">
               <h3>Stats</h3>
-              <p>Guard: {character.stats.guard}</p>
-              <p>Vigor: {character.stats.vigor}</p>
-              <p>Clarity: {character.stats.clarity}</p>
-              <p>Spirit: {character.stats.spirit}</p>
+              <div className="stats-grid">
+                <div className="stat-item">
+                  <span className="stat-label">Vigor</span>
+                  <div className="stat-value">{character.stats.vigor}</div>
+                </div>
+                <div className="stat-item">
+                  <span className="stat-label">Clarity</span>
+                  <div className="stat-value">{character.stats.clarity}</div>
+                </div>
+                <div className="stat-item">
+                  <span className="stat-label">Spirit</span>
+                  <div className="stat-value">{character.stats.spirit}</div>
+                </div>
+                <div className="stat-item">
+                  <span className="stat-label">Guard</span>
+                  <div className="stat-value">{character.stats.guard}</div>
+                </div>
+                <div className="stat-item">
+                  <span className="stat-label">Armor</span>
+                  <div className="stat-value">{character.stats.armor}</div>
+                </div>
+              </div>
             </div>
 
             <div className="knighthood">
               <h3>{character.knighthood.name}</h3>
-              <p><strong>Special Ability:</strong> {character.knighthood.specialAbility}</p>
-              <p><strong>Passion:</strong> {character.knighthood.passion}</p>
 
-              <div className="feature">
-                <h4>{character.knighthood.feature.name}</h4>
-                {character.knighthood.feature.components.map((component, index) => (
-                  <div key={index} className="component">
-                    <h5>{component.name} ({component.randomProperty})</h5>
-                    <p>{component.characteristic}</p>
+              <div className="knighthood-content">
+                <div className="knighthood-left">
+                  <p><strong>Special Ability:</strong> {character.knighthood.specialAbility}</p>
+                  <p><strong>Passion:</strong> {character.knighthood.passion}</p>
+
+                  <div className="feature">
+                    <h4>{character.knighthood.feature.name}</h4>
+                    {character.knighthood.feature.components.map((component, index) => (
+                      <div key={index} className="component">
+                        <h5>{component.name} ({component.randomProperty})</h5>
+                        <p>{component.characteristic}</p>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                </div>
 
-              <div className="properties">
-                <h4>Property</h4>
-                <ul>
-                  {character.knighthood.properties.map((property, index) => (
-                    <li key={index}>{property}</li>
-                  ))}
-                </ul>
+                <div className="knighthood-right">
+                  <div className="properties">
+                    <h4>Property</h4>
+                    <ul>
+                      {character.knighthood.properties.map((property, index) => (
+                        <li key={index}>{property}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
 

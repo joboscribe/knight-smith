@@ -1,3 +1,6 @@
+/* Import fantasy-inspired Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700;900&family=Uncial+Antiqua&family=MedievalSharp&display=swap');
+
 .app {
   max-width: 1200px;
   margin: 0 auto;
@@ -7,11 +10,49 @@
   color: #333;
 }
 
+/* Fantasy Font Options - choose one by commenting/uncommenting */
+
+/* Option 1: Cinzel Decorative - Elegant and regal */
+/* 
 .app h1 {
+  font-family: 'Cinzel Decorative', serif;
   text-align: center;
   color: #2c3e50;
   margin-bottom: 2rem;
   font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+} */
+
+
+/* Option 2: Uncial Antiqua - Medieval manuscript style */
+
+.app h1 {
+  font-family: 'Uncial Antiqua', serif;
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  font-size: 2.8rem;
+  font-weight: 400;
+}
+
+
+/* Option 3: MedievalSharp - Gothic medieval */
+/* 
+.app h1 {
+  font-family: 'MedievalSharp', serif;
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: 400;
+} */
+
+
+/* All other headings use Cinzel (elegant but readable) */
+h2, h3, h4, h5 {
+  font-family: 'Cinzel', serif !important;
+  font-weight: 600;
 }
 
 /* Age Selection Styles */
@@ -94,6 +135,62 @@
 
 .reset-btn:hover {
   background: #c0392b;
+}
+
+/* Knight name input styling */
+.knight-name-input {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.knight-name-input label {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  font-family: 'Cinzel', serif;
+}
+
+.knight-name-input input {
+  font-size: 1.2rem;
+  padding: 0.75rem 1rem;
+  border: 2px solid #3498db;
+  border-radius: 8px;
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  color: #2c3e50;
+  background: #f8f9fa;
+  min-width: 300px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.knight-name-input input:focus {
+  outline: none;
+  border-color: #2980b9;
+  box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+}
+
+.knight-name-input input::placeholder {
+  color: #95a5a6;
+  font-style: italic;
+}
+
+/* Knight name header styling */
+.knight-name-header {
+  font-family: 'Uncial Antiqua', serif !important;
+  font-size: 2.5rem !important;
+  color: #8e44ad !important;
+  text-align: center;
+  margin-bottom: 1rem !important;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.character-age {
+  font-size: 1.5rem !important;
+  color: #34495e !important;
+  text-align: center;
+  margin-bottom: 2rem !important;
 }
 
 .character-info {
@@ -197,6 +294,58 @@
   border-left: 2px solid #9b59b6;
 }
 
+/* Horizontal layout for knighthood content - screen view */
+.knighthood-content {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-top: 1rem;
+}
+
+.knighthood-left {
+  flex: 2;
+}
+
+.knighthood-right {
+  flex: 1;
+}
+
+/* Horizontal stats layout for screen view */
+.stats-grid {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  gap: 1.5rem;
+  padding: 0 1rem;
+  margin-top: 1rem;
+}
+
+.stat-item {
+  flex: 1;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+  color: #2c3e50;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #3498db;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  color: #2c3e50;
+  min-height: 4rem;
+}
+
 .seer {
   background: #f8f9fa;
   border-radius: 8px;
@@ -232,6 +381,267 @@
   margin: 0.25rem 0;
   border-radius: 4px;
   border-left: 2px solid #e67e22;
+}
+
+/* Print Styles for Letter-sized Paper */
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* Remove browser print headers/footers */
+  @page {
+    margin: 0.1in;
+    size: letter;
+    /* Remove headers and footers */
+    @top-left { content: ""; }
+    @top-center { content: ""; }
+    @top-right { content: ""; }
+    @bottom-left { content: ""; }
+    @bottom-center { content: ""; }
+    @bottom-right { content: ""; }
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-size: 10pt;
+    line-height: 1.3;
+  }
+
+  .app {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 10pt;
+    background: white;
+    color: black;
+  }
+
+  .app h1 {
+    font-size: 24pt;
+    margin-bottom: 0.3in;
+    text-align: center;
+    page-break-after: avoid;
+  }
+
+  /* Hide age selection, reset button, name input, and app title when printing */
+  .age-selection,
+  .reset-btn,
+  .print-btn,
+  .app h1,
+  .knight-name-input {
+    display: none !important;
+  }
+
+  /* Show knight name header in print but hide character age header */
+  .knight-name-header {
+    display: block !important;
+    font-family: 'Uncial Antiqua', serif !important;
+    font-size: 20pt !important;
+    color: #2c3e50 !important;
+    text-align: center !important;
+    margin: 0 0 0.2in 0 !important;
+    page-break-after: avoid;
+  }
+
+  .character-age {
+    display: none !important;
+  }
+
+  .character-display {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .character-info {
+    display: block;
+    gap: 0;
+  }
+
+  .character-info h2 {
+    display: none !important;
+  }
+
+  /* Character sections layout */
+  .stats, .knighthood, .seer {
+    margin-bottom: 0.15in;
+    padding: 0.1in;
+    border: 1pt solid #333;
+    border-radius: 0;
+    background: white;
+    page-break-inside: avoid;
+  }
+
+  .stats {
+    width: 100%;
+    margin-bottom: 0.2in;
+  }
+
+  .stats h3 {
+    display: none !important;
+  }
+
+  .knighthood h3, .seer h3 {
+    font-size: 14pt;
+    margin: 0 0 0.1in 0;
+    color: #333;
+  }
+
+  /* Horizontal stats layout for print */
+  .stats-grid {
+    display: flex !important;
+    justify-content: space-between;
+    text-align: center;
+    gap: 0.3in;
+    padding: 0;
+    width: 100%;
+  }
+
+  .stat-item {
+    flex: 1;
+  }
+
+  .stat-label {
+    font-size: 11pt;
+    font-weight: bold;
+    margin-bottom: 0.05in;
+    display: block;
+  }
+
+  .stat-value {
+    font-size: 16pt;
+    font-weight: bold;
+    display: block;
+    border: 1pt solid #333;
+    padding: 0.1in;
+    background: #f8f8f8;
+    min-height: 0.3in;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .stats p {
+    margin: 0;
+    font-size: 11pt;
+    font-weight: bold;
+  }
+
+  /* Knighthood section */
+  .knighthood {
+    page-break-inside: avoid;
+  }
+
+  /* Horizontal layout for knighthood content */
+  .knighthood-content {
+    display: flex !important;
+    gap: 0.3in;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .knighthood-left {
+    flex: 2;
+  }
+
+  .knighthood-right {
+    flex: 1;
+  }
+
+  .feature {
+    background: #f8f8f8;
+    padding: 0.05in;
+    margin: 0.05in 0;
+    border: 1pt solid #ccc;
+  }
+
+  .feature h4 {
+    font-size: 11pt;
+    margin: 0 0 0.03in 0;
+  }
+
+  .component {
+    background: white;
+    padding: 0.03in;
+    margin: 0.03in 0;
+    border-left: 1pt solid #666;
+    border-radius: 0;
+  }
+
+  .component h5 {
+    font-size: 10pt;
+    margin: 0 0 0.02in 0;
+    font-weight: bold;
+  }
+
+  .component p {
+    font-size: 9pt;
+    margin: 0;
+    font-style: italic;
+  }
+
+  .properties ul, .seer-characteristics ul {
+    list-style-type: disc;
+    padding-left: 0.2in;
+    margin: 0.05in 0;
+  }
+
+  .properties li, .seer-characteristics li {
+    font-size: 10pt;
+    margin: 0.03in 0;
+    padding: 0.03in;
+    background: #f8f8f8;
+    border: none;
+    border-radius: 0;
+  }
+
+  /* Seer section */
+  .seer p {
+    font-size: 11pt;
+    margin: 0.03in 0;
+  }
+
+  .seer-characteristics h4, .properties h4 {
+    font-size: 12pt;
+    margin: 0.1in 0 0.05in 0;
+  }
+
+  /* Page breaks */
+  .knighthood {
+    page-break-before: avoid;
+  }
+
+  .seer {
+    page-break-before: auto;
+  }
+
+  /* Print button styling */
+  .print-btn {
+    display: none !important;
+  }
+}
+
+/* Print button for screen view */
+@media screen {
+  .print-btn {
+    background: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-left: 1rem;
+    transition: background-color 0.2s;
+  }
+
+  .print-btn:hover {
+    background: #2ecc71;
+  }
 }
 
 /* Responsive Design */
